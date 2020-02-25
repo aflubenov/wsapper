@@ -7,7 +7,8 @@ let fnEnviaelMensaje = () => {
     let elTelefono = "";
     let elIframe = document.getElementById('theWsappIframe');
     let laUrl = "https://web.whatsapp.com/send?"; //phone="5493415473805&text=I%27m%20interested%20in%20your%20car%20for%20sale&source=&data=
-
+    let elspan = document.getElementById('informandotel');
+    
 
     if (!losTelefonos) {
         alert('Fin!');
@@ -24,9 +25,12 @@ let fnEnviaelMensaje = () => {
     losTelefonos = losTelefonos.join('\n');
     losTelefonosElemento.value = losTelefonos;
 
+    elspan.innerHTML = "Enviando a " + elTelefono;
     laUrl = laUrl + "phone=" + elTelefono;
     laUrl = laUrl + "&text=" + encodeURIComponent(elMensaje);
     laUrl = laUrl + "&source=&data="
+
+
 
     elIframe.src = laUrl;
 
@@ -37,7 +41,8 @@ let fnEnviaelMensaje = () => {
 
 
 let intentarEnviarMensaje = (pIframe) => {
-    let elDocumento = pIframe.contentDocument;
+    
+    let elDocumento = pIframe.contentDocument;    
 
     if (!elDocumento) {
         setTimeout(() => {
